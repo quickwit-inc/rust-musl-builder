@@ -181,9 +181,13 @@ ENV X86_64_UNKNOWN_LINUX_MUSL_OPENSSL_DIR=/usr/local/musl/ \
 # slow down image builds). This will use the static linking toolchain, but that
 # should be OK.
 #
-# - `cargo-deb` builds Debian packages.
-RUN env CARGO_HOME=/opt/rust/cargo cargo install -f cargo-deb && \
+# We include cargo-audit for compatibility with earlier versions of this image,
+# but cargo-deny provides a superset of cargo-audit's features.
+RUN env CARGO_HOME=/opt/rust/cargo cargo install -f cargo-audit && \
+    env CARGO_HOME=/opt/rust/cargo cargo install -f cargo-deb && \
     rm -rf /opt/rust/cargo/registry/
+    
+#    env CARGO_HOME=/opt/rust/cargo cargo install -f mdbook-graphviz && \
 
 # Allow sudo without a password.
 ADD sudoers /etc/sudoers.d/nopasswd
