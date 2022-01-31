@@ -1,6 +1,7 @@
 name: Build & publish cross base image
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
