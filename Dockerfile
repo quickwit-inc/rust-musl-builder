@@ -117,7 +117,7 @@ RUN echo "Building OpenSSL" && \
 
 RUN echo "Building zlib" && \
     cd /tmp && \
-    curl -fLO "http://zlib.net/zlib-$ZLIB_VERSION.tar.gz" && \
+    curl -fLO "https://zlib.net/fossils/zlib-$ZLIB_VERSION.tar.gz" && \
     tar xzf "zlib-$ZLIB_VERSION.tar.gz" && cd "zlib-$ZLIB_VERSION" && \
     CC=musl-gcc ./configure --static --prefix=/usr/local/musl && \
     make && make install && \
